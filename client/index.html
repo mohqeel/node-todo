@@ -17,6 +17,8 @@
 		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
+
+		.strikethrough{ text-decoration: line-through; }
 	</style>
 
 	<!-- SPELLS -->
@@ -36,15 +38,17 @@
 			<h1>I'm a Todo-app <span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
+
+
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<div class="checkbox"  ng-repeat="todo in todos">
-                                  <label>
-                                  <input type="checkbox"> {{ todo.text }}
-                                  </label>
-                                 </div>
+					<label ng-class="{strikethrough: checked}">
+						<input type="checkbox" ng-model="checked" ng-change="isChecked()"> {{ todo.text }} <a ng-click="deleteTodo()"> Delete </a>
+					</label>
+                </div>
                              
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
